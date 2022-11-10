@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const db = require("_helpers/db");
 
 async function authenticate({ username, password }) {
-    const user = await db.User.scope("withHash").findOne({ where: { username } });
+    const user = await db.user.scope("withHash").findOne({ where: { username } });
 
     if (!user || !(await bcrypt.compare(password, user.hash))) {
         throw "Username or password is incorrect";
@@ -15,7 +15,7 @@ async function authenticate({ username, password }) {
 }
 
 async function getAll() {
-    return await db.User.findAll();
+    return await db.user.findAll();
 }
 
 async function getById(id) {

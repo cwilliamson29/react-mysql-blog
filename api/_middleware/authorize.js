@@ -1,4 +1,4 @@
-const { expressjwt: jwt } = require("express-jwt");
+const jwt = require("express-jwt");
 const { secret } = require("config.json");
 const db = require("_helpers/db");
 
@@ -6,7 +6,8 @@ function authorize() {
     return [
         jwt({ secret, algorithms: ["HS256"] }),
         async (req, res, next) => {
-            const user = await db.User.findByPk(req.user.sub);
+            console.log(req.user);
+            const user = await db.user.findByPk(req.user.sub);
 
             if (!user) return res.status(401).json({ message: "unauthorized" });
 
