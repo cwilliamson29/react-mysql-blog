@@ -15,16 +15,13 @@ const Login = () => {
 
     const { currentUser, login } = useContext(AuthContext);
 
-    console.log(currentUser);
-
     const handleChange = (e) => {
         setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await login(inputs);
-            //navigate("/");
+            await login(e, inputs);
         } catch (err) {
             setErr(err.response.data);
         }
@@ -32,6 +29,7 @@ const Login = () => {
     return (
         <div className="auth">
             <h1>Login</h1>
+            <h5>{currentUser} : user</h5>
             <form>
                 <input type="text" placeholder="Username" name="username" onChange={handleChange} />
                 <input type="password" placeholder="Password" name="password" onChange={handleChange} />

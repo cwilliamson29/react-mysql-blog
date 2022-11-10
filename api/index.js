@@ -1,14 +1,20 @@
-import {} from "dotenv/config";
-import express from "express";
-import routes from "./routes/index.js";
-import cookieParser from "cookie-parser";
-
+require("dotenv").config();
+require("rootpath")();
+const express = require("express");
 const app = express();
-app.use(express.json());
-app.use(cookieParser);
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const errorHandler = require("_middleware/errorHandler");
 
-app.use("/api", routes);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 
-app.listen(4000, () => {
-    console.log("Connected to backend");
+app.use(errorHandler);
+
+app.use("/users", require("./users/users.controller"));
+
+const port = 4000;
+app.listen(port, () => {
+    console.log("Server Listening on http://localhost:" + port);
 });
