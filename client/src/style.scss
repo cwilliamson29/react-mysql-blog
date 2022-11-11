@@ -1,32 +1,38 @@
-$lightGreen: #b9e7e7;
+$lightGreen: #00ff00;
 .app {
     display: flex;
     justify-content: center;
+    background-color: #555;
     .link {
         text-decoration: none;
         color: inherit;
     }
     .container {
-        width: 1024px;
+        min-width: 1024px;
+        width: 100%;
         //LOGIN & REGISTER
         .auth {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            background-color: $lightGreen;
+            height: calc(100vh - 170px);
+            background-color: #555;
             h1 {
                 font-size: 30px;
-                color: teal;
+                color: $lightGreen;
                 margin-bottom: 20px;
+                -webkit-text-fill-color: $lightGreen;
+                /* Will override color (regardless of order) */
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: black;
             }
             form {
                 display: flex;
                 flex-direction: column;
                 padding: 30px;
                 background-color: white;
-                width: 200px;
+                width: 300px;
                 gap: 20px;
                 border-radius: 10px;
             }
@@ -51,9 +57,37 @@ $lightGreen: #b9e7e7;
                 font-size: 12px;
                 text-align: center;
             }
+            .loggedIn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .bottomButtons {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-content: space-between;
+            }
+            .bottomButtons span {
+                font-size: 20px;
+                line-height: 25px;
+            }
+            .left {
+                cursor: pointer;
+            }
+            .right {
+                text-align: right;
+                cursor: pointer;
+            }
         }
         //NAVBAR
         .navbar {
+            background-color: black !important;
+            padding-left: 50px;
+            padding-right: 50px;
+            height: 90px;
+            color: white;
             .container {
                 padding: 10px 0;
                 display: flex;
@@ -61,7 +95,7 @@ $lightGreen: #b9e7e7;
                 justify-content: space-between;
                 .logo {
                     img {
-                        width: 120px;
+                        width: 280px;
                     }
                 }
                 .links {
@@ -85,10 +119,11 @@ $lightGreen: #b9e7e7;
                     align-items: center;
                     justify-content: center;
                     font-weight: 300;
+                    color: black;
                     &:hover {
-                        color: teal;
+                        color: black;
                         background-color: #fff;
-                        border: 1px solid teal;
+                        border: 1px solid $lightGreen;
                         height: 48px;
                         width: 48px;
                     }
@@ -97,15 +132,16 @@ $lightGreen: #b9e7e7;
         }
         //FOOTER
         footer {
-            margin-top: 100px;
+            //margin-top: 100px;
             padding: 20px;
-            background-color: $lightGreen;
+            background-color: black;
+            color: $lightGreen;
             display: flex;
             align-items: center;
             justify-content: space-between;
             font-size: 12px;
             img {
-                height: 50px;
+                height: 40px;
             }
         }
         //HOME

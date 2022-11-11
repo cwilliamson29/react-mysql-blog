@@ -26,14 +26,13 @@ const router = createBrowserRouter([
             { path: "/", element: <Home /> },
             { path: "/post/:id", element: <Single /> },
             { path: "/write", element: <Write /> },
+            { path: "/register", element: <Register /> },
+            { path: "/login", element: <Login /> },
+            { path: "/account", element: <Login /> },
         ],
     },
     {
-        path: "/register",
-        element: <Register />,
-    },
-    {
-        path: "/login",
+        path: "/adminpanel",
         element: <Login />,
     },
 ]);
