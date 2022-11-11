@@ -5,6 +5,8 @@ import axios from "axios";
 
 const Register = () => {
     const [inputs, setInputs] = useState({
+        firstName: "",
+        LastName: "",
         username: "",
         email: "",
         password: "",
@@ -19,8 +21,8 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("/auth/register", inputs);
-            //navigate("/login");
+            await axios.post("/users/register", inputs);
+            navigate("/login");
         } catch (err) {
             setErr(err.response.data);
         }
@@ -29,6 +31,8 @@ const Register = () => {
         <div className="auth">
             <h1>Register</h1>
             <form>
+                <input required type="text" placeholder="First Name" name="firstName" onChange={handleChange} />
+                <input required type="text" placeholder="Last Name" name="lastName" onChange={handleChange} />
                 <input required type="text" placeholder="Username" name="username" onChange={handleChange} />
                 <input required type="email" placeholder="Email" name="email" onChange={handleChange} />
                 <input required type="password" placeholder="Password" name="password" onChange={handleChange} />

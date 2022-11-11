@@ -21,7 +21,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await login(e, inputs);
+            await login(inputs);
         } catch (err) {
             setErr(err.response.data);
         }
@@ -30,10 +30,10 @@ const Login = () => {
         <div className="auth">
             <h1>Login</h1>
             <h5>{currentUser} : user</h5>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Username" name="username" onChange={handleChange} />
                 <input type="password" placeholder="Password" name="password" onChange={handleChange} />
-                <button onSubmit={handleSubmit}>Login</button>
+                <button type="submit">Login</button>
                 {err && <p>Wrong Username or password</p>}
                 <span>
                     Don't have an account? <Link to="/register">Register</Link>
