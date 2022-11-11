@@ -9,22 +9,21 @@ export const AuthContextProvider = ({ children }) => {
 
     const login = async (inputs) => {
         const res = await axios.post("/users/authenticate", inputs);
-        localStorage.setItem("user", JSON.stringify(res.data.username));
+        localStorage.setItem("user", JSON.stringify(res.data));
         setCurrentUser(res.data.username);
-        console.log(res.data.userType);
     };
 
     const logout = async (inputs) => {
-        const res = await axios.post("/auth/logout", inputs);
         setCurrentUser(null);
-        console.log("inside logout asdf + ", res.data);
+        localStorage.clear();
     };
 
     useEffect(() => {
         let s = JSON.parse(localStorage.getItem("user"));
 
         if (s !== null) {
-            setCurrentUser(s);
+            console.log(s.token);
+            setCurrentUser(s.username);
         } else {
             setCurrentUser(null);
         }

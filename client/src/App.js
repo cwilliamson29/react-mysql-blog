@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Single from "./pages/Single";
 import Write from "./pages/Write";
 import "./style.scss";
+import AdminPanel from "./adminPanel/AdminPanel";
 
 const Layout = () => {
     return (
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/adminpanel",
-        element: <Login />,
+        element: <AdminPanel />,
     },
 ]);
 

@@ -15,6 +15,8 @@ app.use(errorHandler);
 
 //*********ROUTES*************/
 app.use("/users", require("./users/users.controller"));
+app.use("/adminpanel", require("./adminPanel/admin.controller"));
+//app.use("/adminpanel", require("./adminPanel/admin.controller"));
 
 /********SERVER LISTEN********/
 const port = 4000;

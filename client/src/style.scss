@@ -128,6 +128,20 @@ $lightGreen: #00ff00;
                         width: 48px;
                     }
                 }
+                .userName {
+                    margin-left: 20px;
+                    margin-right: 13px;
+                    font-weight: bold;
+                    font-size: 20px;
+                    color: $lightGreen;
+                }
+                .loginLinks {
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    font-weight: bold;
+                    font-size: 20px;
+                    color: $lightGreen;
+                }
             }
         }
         //FOOTER

@@ -4,13 +4,15 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 import LoggedIn from "../utils/loggedIn";
+import { useEffect } from "react";
 
-const Login = () => {
+const AdminPanel = () => {
     const [inputs, setInputs] = useState({
         username: "",
         password: "",
     });
     const [err, setErr] = useState(null);
+    const [content, setContent] = useState("");
 
     const navigate = useNavigate();
 
@@ -27,6 +29,25 @@ const Login = () => {
             setErr(err.response.data);
         }
     };
+    const authHeader = () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+
+        if (user && user.token) {
+            // for Node.js Express back-end
+            return { "x-access-token": user.token };
+        } else {
+            return {};
+        }
+    };
+    const getAdmin = () => {
+        return axios.get("/adminpanel", { headers: authHeader() });
+    };
+
+    useEffect(() => {
+        getAdmin().then((res) => {
+            setContent(res.data);
+        });
+    }, []);
 
     if (currentUser !== null) {
         return <LoggedIn />;
@@ -51,4 +72,4 @@ const Login = () => {
     }
 };
 
-export default Login;
+export default AdminPanel;

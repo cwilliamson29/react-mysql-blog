@@ -7,11 +7,11 @@ const userService = require("users/users.service");
 
 router.post("/authenticate", authenticateSchema, authenticate);
 router.post("/register", registerSchema, register);
-router.get("/", authorize(), getAll);
+router.get("/", authorize(), isAdmin, getAll);
 router.get("/current", authorize(), getCurrent);
 router.get("/:id", authorize(), getById);
 router.put("/:id", authorize(), updateSchema, update);
-router.delete("/:id", authorize(), _delete);
+router.delete("/:id", authorize(), isAdmin, _delete);
 
 module.exports = router;
 
@@ -28,6 +28,13 @@ function authenticate(req, res, next) {
         .authenticate(req.body)
         .then((user) => res.json(user))
         .catch(next);
+}
+
+function isAdmin(req, res, next) {
+    if (req.user.userType !== "admin") {
+        return res.status(401).send({ msg: "Not an admin, sorry" });
+    }
+    next();
 }
 
 function registerSchema(req, res, next) {
